@@ -4,6 +4,7 @@
 [![testing](https://github.com/josetorronteras/EmailValidationMacro/actions/workflows/testing.yml/badge.svg)](https://github.com/josetorronteras/EmailValidationMacro/actions/workflows/testing.yml)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjosetorronteras%2FEmailValidationMacro%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/josetorronteras/EmailValidationMacro)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjosetorronteras%2FEmailValidationMacro%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/josetorronteras/EmailValidationMacro)
+[![Coverage Status](https://coveralls.io/repos/github/josetorronteras/EmailValidationMacro/badge.svg?branch=main)](https://coveralls.io/github/josetorronteras/EmailValidationMacro?branch=main)
 
 Email Validation Macro is a Swift macro framework for validating email addresses.
 
