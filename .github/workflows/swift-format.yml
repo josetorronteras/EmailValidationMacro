@@ -1,0 +1,26 @@
+name: Swift Format
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  swift-format:
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Xcode select
+        run: sudo xcode-select -s '/Applications/Xcode_15.2.app/Contents/Developer'
+      - name: Install Swift Format
+        run: brew install swift-format
+      - name: Swift Format
+        run: swift format --in-place --recursive ./Package.swift ./Sources ./Tests
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Run swift-format
