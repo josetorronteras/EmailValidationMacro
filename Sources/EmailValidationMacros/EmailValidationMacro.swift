@@ -1,13 +1,13 @@
+import Foundation
 import SwiftCompilerPlugin
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
-import Foundation
 
 @main
 struct EmailValidationPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
-        EmailValidationMacro.self,
+        EmailValidationMacro.self
     ]
 }
 
@@ -25,17 +25,18 @@ public struct EmailValidationMacro: ExpressionMacro {
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
         guard let argument = node.argumentList.first?.expression,
-              let segments = argument.as(StringLiteralExprSyntax.self)?.segments,
-              segments.count == 1,
-              case .stringSegment(let literalSegment)? = segments.first else {
+            let segments = argument.as(StringLiteralExprSyntax.self)?.segments,
+            segments.count == 1,
+            case .stringSegment(let literalSegment)? = segments.first
+        else {
             throw EmailValidationMacroError.requiresStaticStringLiteral
         }
-        
+
         let email = literalSegment.content.text
         guard isValidEmail(email) else {
             throw EmailValidationMacroError.malformedEmail
         }
-        
+
         return "\(argument)"
     }
 }

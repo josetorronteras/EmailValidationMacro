@@ -1,7 +1,7 @@
 enum EmailValidationMacroError: Error, CustomStringConvertible {
     case requiresStaticStringLiteral
     case malformedEmail
-    
+
     var description: String {
         switch self {
         case .requiresStaticStringLiteral:

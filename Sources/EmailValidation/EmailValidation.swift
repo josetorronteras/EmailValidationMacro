@@ -14,4 +14,5 @@
 /// print(validatedEmail) // Output: "foo@email.com"
 /// ```
 @freestanding(expression)
-public macro email(_ email: String) -> String = #externalMacro(module: "EmailValidationMacros", type: "EmailValidationMacro")
+public macro email(_ email: String) -> String =
+    #externalMacro(module: "EmailValidationMacros", type: "EmailValidationMacro")
