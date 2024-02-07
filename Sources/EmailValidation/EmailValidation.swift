@@ -1,12 +1,17 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-/// A macro that produces both a value and a string containing the
-/// source code that generated the value. For example,
+/// Macro that Validates the provided email address.
 ///
-///     #stringify(x + y)
+/// - Parameters:
+///   - email: The email address to validate.
+/// - Returns: The validated email address if valid.
 ///
-/// produces a tuple `(x + y, "x + y")`.
+/// Example:
+/// ```swift
+/// // Example usage of the email validation macro
+/// let validatedEmail = #email("foo@email.com")
+/// print(validatedEmail) // Output: "foo@email.com"
+/// ```
 @freestanding(expression)
-public macro stringify<T>(_ value: T) -> (T, String) =
-    #externalMacro(module: "EmailValidationMacros", type: "StringifyMacro")
+public macro email(_ email: String) -> String = #externalMacro(module: "EmailValidationMacros", type: "EmailValidationMacro")
