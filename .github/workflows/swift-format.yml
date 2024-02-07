@@ -18,7 +18,7 @@ jobs:
       - name: Install Swift Format
         run: brew install swift-format
       - name: Swift Format
-        run: swift format --in-place --recursive ./Package.swift ./Sources ./Tests
+        run: swift format --in-place --recursive ./Package.swift ./Sources ./Tests --configuration swift-format.json
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
