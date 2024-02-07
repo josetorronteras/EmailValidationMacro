@@ -1,6 +1,7 @@
 # Email Validation Macro
 
 [![CodeFactor](https://www.codefactor.io/repository/github/josetorronteras/emailvalidationmacro/badge)](https://www.codefactor.io/repository/github/josetorronteras/emailvalidationmacro)
+[![testing](https://github.com/josetorronteras/EmailValidationMacro/actions/workflows/testing.yml/badge.svg)](https://github.com/josetorronteras/EmailValidationMacro/actions/workflows/testing.yml)
 
 Email Validation Macro is a Swift macro framework for validating email addresses.
 
