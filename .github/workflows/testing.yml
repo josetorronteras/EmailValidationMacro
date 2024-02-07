@@ -21,6 +21,6 @@ jobs:
       - name: Test
         run: |
           swift test --enable-code-coverage
-          xcrun llvm-cov export -format="lcov" .build/debug/EmailValidationPackageTests.xctest/Contents/MacOS/EmailValidationPackageTests -instr-profile .build/debug/codecov/default.profdata -ignore-filename-regex='Tests.swift' -ignore-filename-regex='EmailValidationMacros.swift' > info.lcov
+          xcrun llvm-cov export -format="lcov" .build/debug/EmailValidationPackageTests.xctest/Contents/MacOS/EmailValidationPackageTests -instr-profile .build/debug/codecov/default.profdata -ignore-filename-regex=".build|Tests" > info.lcov
       - name: Coveralls
         uses: coverallsapp/github-action@v2
