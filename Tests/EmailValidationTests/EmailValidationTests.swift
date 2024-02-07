@@ -7,19 +7,21 @@ import XCTest
     import EmailValidationMacros
 
     let testMacros: [String: Macro.Type] = [
-        "stringify": StringifyMacro.self
+        "email": EmailValidationMacro.self
     ]
 #endif
 
 final class EmailValidationTests: XCTestCase {
-    func testMacro() throws {
+
+    func testValidEmail() throws {
         #if canImport(EmailValidationMacros)
             assertMacroExpansion(
                 """
-                #stringify(a + b)
+                #email("foo@email.com")
                 """,
-                expandedSource: """
-                    (a + b, "a + b")
+                expandedSource:
+                    """
+                    "foo@email.com"
                     """,
                 macros: testMacros
             )
@@ -28,15 +30,39 @@ final class EmailValidationTests: XCTestCase {
         #endif
     }
 
-    func testMacroWithStringLiteral() throws {
+    func testInvalidEmailMalformed() throws {
+        #if canImport(EmailValidationMacros)
+            assertMacroExpansion(
+                """
+                #email("invalid-email")
+                """,
+                expandedSource:
+                    """
+                    #email("invalid-email")
+                    """,
+                diagnostics: [
+                    DiagnosticSpec(message: "The input email is malformed", line: 1, column: 1)
+                ],
+                macros: testMacros
+            )
+        #else
+            throw XCTSkip("macros are only supported when running tests for the host platform")
+        #endif
+    }
+
+    func testInvalidEmailStaticStringLiteral() throws {
         #if canImport(EmailValidationMacros)
             assertMacroExpansion(
                 #"""
-                #stringify("Hello, \(name)")
+                #email("\(randomString(length: 2))@email.com")
                 """#,
-                expandedSource: #"""
-                    ("Hello, \(name)", #""Hello, \(name)""#)
+                expandedSource:
+                    #"""
+                    #email("\(randomString(length: 2))@email.com")
                     """#,
+                diagnostics: [
+                    DiagnosticSpec(message: "Requires a static string literal", line: 1, column: 1)
+                ],
                 macros: testMacros
             )
         #else
